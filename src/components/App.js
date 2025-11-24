@@ -2,37 +2,31 @@ import React, { useState } from "react";
 import './../styles/App.css';
 
 const App = () => {
-  // Store all fields in one array
   const [fields, setFields] = useState([
     { name: "", age: "" }
   ]);
 
-  // Update name or age for a specific field
   const updateField = (index, key, value) => {
     const newFields = [...fields];
     newFields[index][key] = value;
     setFields(newFields);
   };
 
-  // Add new empty field
   const addField = () => {
     setFields([...fields, { name: "", age: "" }]);
   };
 
-  // Remove field at index
   const removeField = (index) => {
-    const newFields = fields.filter((_, i) => i !== index);
-    setFields(newFields);
+    setFields(fields.filter((_, i) => i !== index));
   };
 
-  // Submit form - show data in console
   const handleSubmit = (e) => {
     e.preventDefault();
-    console.log(fields);
+    console.log(fields); // This should log the ARRAY
   };
 
   return (
-    <div>
+    <div id="main">
       <form onSubmit={handleSubmit}>
         
         {fields.map((field, index) => (
@@ -60,7 +54,7 @@ const App = () => {
         ))}
 
         <button type="button" onClick={addField}>
-          Add More
+          Add More..
         </button>
 
         <button type="submit">Submit</button>
